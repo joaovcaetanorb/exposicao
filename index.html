@@ -85,8 +85,8 @@ button{cursor:none}
 
 .hero-copy{position:absolute;bottom:0;left:0;width:100%;padding:0 6% 7rem;z-index:10;pointer-events:none}
 .hero-eyebrow{font-family:'Inter',sans-serif;font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:1.2rem}
-.hero-for{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:clamp(2.2rem,5.5vw,4.5rem);color:rgba(255,255,255,.88);margin-bottom:.6rem;line-height:1.1}
-.hero-name{font-family:'Great Vibes',cursive;font-size:clamp(6rem,22vw,16rem);color:#fff;line-height:.88}
+.hero-for{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:clamp(3rem,7vw,6.5rem);color:rgba(255,255,255,.88);margin-bottom:.5rem;line-height:1.1}
+.hero-name{font-family:'Great Vibes',cursive;font-size:clamp(11rem,32vw,26rem);color:#fff;line-height:.85}
 
 .hero-counter{position:absolute;bottom:3rem;right:6%;z-index:10;display:flex;align-items:center;gap:.7rem}
 .hc-cur{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:rgba(255,255,255,.85)}
@@ -384,10 +384,8 @@ footer{background:var(--dark);padding:3.5rem 6%;display:flex;align-items:center;
         <p class="vinyl-info-sub">Uma coleção de momentos em som</p>
       </div>
     </div>
-    <!-- Cole o embed do Spotify aqui. Spotify → ··· na playlist → Compartilhar → Incorporar playlist -->
-    <div class="spotify-ph rv">
-      Cole aqui o embed da sua playlist do Spotify.
-      <code>&lt;iframe style="border-radius:0" src="https://open.spotify.com/embed/playlist/SEU_ID_AQUI" width="100%" height="352" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"&gt;&lt;/iframe&gt;</code>
+    <div class="rv">
+      <iframe data-testid="embed-iframe" style="border-radius:0" src="https://open.spotify.com/embed/playlist/0bkUByM3JOR2NMJ5ZaU7jn?utm_source=generator&theme=0&si=b9c6f95e13ee4f13" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
     </div>
   </div>
 </section>
