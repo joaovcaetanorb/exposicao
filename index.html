@@ -161,6 +161,7 @@ button{cursor:none}
 .pl-title{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;font-size:clamp(2.4rem,5vw,4rem);color:var(--bg2);line-height:1.1;margin-bottom:4rem}
 
 .vinyl-wrap{display:flex;align-items:center;gap:3rem;margin-bottom:3rem}
+.vinyl-disc-wrap{flex-shrink:0}
 .vinyl{width:160px;height:160px;min-width:160px;border-radius:50%;background:radial-gradient(circle at 50%,#111 0%,#111 9%,#222 9%,#222 10%,#111 10%,#111 22%,#1e1e1e 22%,#1e1e1e 23%,#111 23%,#111 38%,#1e1e1e 38%,#1e1e1e 39%,#111 39%,#111 55%,#1e1e1e 55%,#1e1e1e 56%,#111 56%,#111 72%,#1e1e1e 72%,#1e1e1e 73%,#111 73%);box-shadow:0 0 50px rgba(0,0,0,.7),0 0 100px rgba(0,0,0,.3);position:relative;animation:vspin 9s linear infinite}
 .vinyl::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:28%;height:28%;border-radius:50%;background:linear-gradient(135deg,var(--gold),#8b6b3c)}
 @keyframes vspin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
@@ -349,9 +350,11 @@ footer{background:var(--dark);padding:3.5rem 6%;display:flex;align-items:center;
   <div class="pl-wrap">
     <p class="lbl pl-lbl rv">04 — Trilha sonora</p>
     <h2 class="pl-title rv">As músicas que<br>me fazem pensar em você</h2>
-    <div class="vinyl-wrap rv">
-      <div class="vinyl" aria-hidden="true"></div>
-      <div>
+    <div class="vinyl-wrap">
+      <div class="vinyl-disc-wrap rv">
+        <div class="vinyl" aria-hidden="true"></div>
+      </div>
+      <div class="rv" style="transition-delay:.2s">
         <p class="vinyl-info-lbl">Playlist especial</p>
         <p class="vinyl-info-name">[Nome dela]</p>
         <p class="vinyl-info-sub">Uma coleção de momentos em som</p>
