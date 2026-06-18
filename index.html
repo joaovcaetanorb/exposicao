@@ -239,11 +239,27 @@ footer{background:var(--dark);padding:3.5rem 6%;display:flex;align-items:center;
 #lightbox{position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,0);display:none;align-items:center;justify-content:center;cursor:zoom-out;padding:2rem}
 #lightbox.open{display:flex;animation:lbIn .4s cubic-bezier(.22,1,.36,1) forwards}
 @keyframes lbIn{from{background:rgba(0,0,0,0)}to{background:rgba(0,0,0,.92)}}
-#lightbox img{max-width:90vw;max-height:88vh;object-fit:contain;opacity:0;transform:scale(.94);animation:lbImgIn .45s .1s cubic-bezier(.22,1,.36,1) forwards}
+#lb-inner{position:relative;display:inline-block;cursor:default}
+#lightbox-img{display:block;max-width:88vw;max-height:78vh;object-fit:contain;opacity:0;transform:scale(.94);animation:lbImgIn .45s .1s cubic-bezier(.22,1,.36,1) forwards}
 @keyframes lbImgIn{to{opacity:1;transform:scale(1)}}
-#lightbox-close{position:absolute;top:2rem;right:2.5rem;font-family:'Inter',sans-serif;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.5);background:none;border:none;cursor:pointer;transition:color .3s}
+#lightbox-close{position:fixed;top:2rem;right:2.5rem;font-family:'Inter',sans-serif;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.45);background:none;border:none;cursor:pointer;transition:color .3s;z-index:2}
 #lightbox-close:hover{color:#fff}
-.lb-caption{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);font-family:'Great Vibes',cursive;font-size:2rem;color:rgba(255,255,255,.7);white-space:nowrap}
+/* legenda: metade sobre a foto, metade fora por baixo */
+.lb-caption{
+  position:absolute;
+  bottom:-1.5rem;
+  left:50%;
+  transform:translateX(-50%);
+  font-family:'Great Vibes',cursive;
+  font-size:clamp(2rem,5vw,3.2rem);
+  color:#fff;
+  white-space:nowrap;
+  text-shadow:0 2px 24px rgba(0,0,0,.6);
+  opacity:0;
+  animation:lbCapIn .5s .35s cubic-bezier(.22,1,.36,1) forwards;
+  pointer-events:none;
+}
+@keyframes lbCapIn{from{opacity:0;transform:translateX(-50%) translateY(8px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
 
 /* cursor pointer em fotos clicáveis */
 .gal-item{cursor:zoom-in}
@@ -323,8 +339,10 @@ footer{background:var(--dark);padding:3.5rem 6%;display:flex;align-items:center;
 <!-- LIGHTBOX -->
 <div id="lightbox" role="dialog" aria-modal="true" onclick="closeLightbox(event)">
   <button id="lightbox-close" onclick="closeLightbox()">fechar ✕</button>
-  <img id="lightbox-img" src="" alt="">
-  <span class="lb-caption" id="lb-caption"></span>
+  <div id="lb-inner">
+    <img id="lightbox-img" src="" alt="">
+    <span class="lb-caption" id="lb-caption"></span>
+  </div>
 </div>
 
 <!-- HERO -->
@@ -674,11 +692,15 @@ const lbCap  = document.getElementById('lb-caption');
 function openLightbox(src, caption){
   lbImg.src = src;
   lbCap.textContent = caption || '';
+  /* reinicia animação da legenda */
+  lbCap.style.animation = 'none';
+  void lbCap.offsetWidth;
+  lbCap.style.animation = '';
   lb.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
 function closeLightbox(e){
-  if(e && e.target === lbImg) return; /* clique na foto não fecha */
+  if(e && (e.target === lbImg || e.target === document.getElementById('lb-inner'))) return;
   lb.classList.remove('open');
   document.body.style.overflow = '';
   setTimeout(()=>{ lbImg.src=''; },400);
